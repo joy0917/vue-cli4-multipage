@@ -1,4 +1,4 @@
-# vue-multi-page
+# vue-cli4-multipage
 ```
 基于vue-cli4配置的多页面应用（自用）
 ```

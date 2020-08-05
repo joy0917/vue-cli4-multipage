@@ -1,3 +1,6 @@
+const path = require('path')
+const glob = require('glob')
+
 module.exports = {
   // 基本 URL
   publicPath: '/',
@@ -8,30 +11,52 @@ module.exports = {
   // 生产环境的 source map
   productionSourceMap: false,
   // multi-page 模式
-  pages: {
-    index: {
-      // page 的入口
-      entry: 'src/pages/index/main.js',
-      // 模板来源
+  pages: handleEntry('./src/pages/*')
+}
+
+// 配置pages参数
+function handleEntry (entry) {
+  const entries = {}
+  glob.sync(entry).forEach(item => {
+    const fileName = path.basename(item, path.extname(item))
+    entries[fileName] = {
+      // 入口文件
+      entry: 'src/pages/' + fileName + '/main.js',
+      // 模板文件
       template: 'public/index.html',
-      // 在 dist/index.html 的输出
-      filename: 'index.html',
-      // 当使用 title 选项时，template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
-      title: '首页',
-      // 在这个页面中包含的块，默认情况下会包含 提取出来的通用 chunk 和 vendor chunk。
-      chunks: ['chunk-vendors', 'chunk-common', 'index']
-    },
-    about: {
-      // page 的入口
-      entry: 'src/pages/about/main.js',
-      // 模板来源
-      template: 'public/index.html',
-      // 在 dist/index.html 的输出
-      filename: 'about.html',
-      // 当使用 title 选项时，template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
-      title: '关于我们',
-      // 在这个页面中包含的块，默认情况下会包含 提取出来的通用 chunk 和 vendor chunk。
-      chunks: ['chunk-vendors', 'chunk-common', 'about']
+      // 输入文件
+      filename: fileName + '.html',
+      // 自定义参数
+      title: setMeta(fileName).title,
+      keywords: setMeta(fileName).keywords,
+      description: setMeta(fileName).description
     }
+  })
+  return entries
+}
+
+// 配置自定义参数
+function setMeta (fileName) {
+  let meta = {}
+  switch (fileName) {
+    case 'index':
+      meta = {
+        title: '首页'
+      }
+      break
+    case 'about':
+      meta = {
+        title: '关于我们'
+      }
+      break
+    default:
+      meta = {
+        title: '标题'
+      }
+      break
   }
+  return Object.assign({
+    keywords: '关键词',
+    description: '关键描述'
+  }, meta)
 }

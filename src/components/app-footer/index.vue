@@ -1,7 +1,7 @@
 <template>
   <div>
-    DDD
-    <img src="@/assets/logo.png" alt="">
+    <hr>
+    公用底部
   </div>
 </template>
 

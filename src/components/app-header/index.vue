@@ -1,10 +1,11 @@
 <template>
   <div>
-    <p>公用导航</p>
+    <p>公用头部</p>
     <ul>
-      <li><a href="./index.html">首页</a></li>
-      <li><a href="./about.html">关于我们</a></li>
+      <li><a href="/home">首页</a></li>
+      <li><a href="/about">关于我们</a></li>
     </ul>
+    <hr>
   </div>
 </template>
 
@@ -14,6 +15,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 
 </style>

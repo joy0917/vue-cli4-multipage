@@ -1,21 +1,21 @@
 <template>
-  <div id="app">
+  <div>
     <app-header></app-header>
-    <p>首页</p>
-    <router-link to="/aaa">A页</router-link>
-    <router-link to="/bbb">B页</router-link>
     <router-view/>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
 import appHeader from '@/components/app-header'
+import appFooter from '@/components/app-footer'
 export default {
   data () {
     return {}
   },
   components: {
-    appHeader
+    appHeader,
+    appFooter
   }
 }
 </script>

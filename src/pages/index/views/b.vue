@@ -1,7 +1,7 @@
 <template>
   <div>
-    AAA
-    <img src="@/assets/logo.png" alt="">
+    <p><router-link to="/home">to A</router-link></p>
+    BBB
   </div>
 </template>
 

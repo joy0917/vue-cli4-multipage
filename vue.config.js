@@ -1,6 +1,6 @@
 module.exports = {
   // 基本 URL
-  publicPath: './',
+  publicPath: '/',
   // 静态资源目录
   assetsDir: 'assets',
   // eslint
@@ -11,7 +11,7 @@ module.exports = {
   pages: {
     index: {
       // page 的入口
-      entry: 'src/views/index/main.js',
+      entry: 'src/pages/index/main.js',
       // 模板来源
       template: 'public/index.html',
       // 在 dist/index.html 的输出
@@ -23,7 +23,7 @@ module.exports = {
     },
     about: {
       // page 的入口
-      entry: 'src/views/about/main.js',
+      entry: 'src/pages/about/main.js',
       // 模板来源
       template: 'public/index.html',
       // 在 dist/index.html 的输出

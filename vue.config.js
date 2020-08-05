@@ -11,11 +11,11 @@ module.exports = {
   // 生产环境的 source map
   productionSourceMap: false,
   // multi-page 模式
-  pages: handleEntry('./src/pages/*')
+  pages: pagesEntry('./src/pages/*')
 }
 
 // 配置pages参数
-function handleEntry (entry) {
+function pagesEntry (entry) {
   const entries = {}
   glob.sync(entry).forEach(item => {
     const fileName = path.basename(item, path.extname(item))

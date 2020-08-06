@@ -11,7 +11,20 @@ module.exports = {
   // 生产环境的 source map
   productionSourceMap: false,
   // multi-page 模式
-  pages: pagesEntry('./src/pages/*')
+  pages: pagesEntry('./src/pages/*'),
+  // 代理
+  devServer: {
+    port: 8080,
+    proxy: {
+      '/api': {
+        target: '', // 测试环境
+        changeOrigin: true, // 开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样客户端端和服务端进行数据的交互就不会有跨域问题
+        pathRewrite: { // 遇见/api才做代理，但真实的请求中没有/api,这样既有了标识, 又能在请求接口中把/api去掉
+          '^/api': ''
+        }
+      }
+    }
+  }
 }
 
 // 配置pages参数
